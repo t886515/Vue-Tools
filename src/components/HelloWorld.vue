@@ -1,0 +1,68 @@
+<template>
+  <div class="checkbox-wrapper" >
+    <q-checkbox v-model="checked" label="Any"></q-checkbox>
+    <q-checkbox v-on:mouseover.native="func" :disable="!checked" v-model="value" label="Visible?"></q-checkbox>
+    <AboutPage :testValue="test"> </AboutPage>
+    <div class="title">{{msg}}</div>
+  </div>
+</template>
+
+<script>
+import AboutPage from './AboutPage.vue'
+import { QCheckbox } from 'quasar-framework'
+
+export default {
+  name: 'HelloWorld',
+  components: { AboutPage, QCheckbox },
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App...',
+      test: 3444,
+      checkedBoo: true,
+      boolean: true,
+      value: [],
+      checked: false,
+    }
+  },
+  methods: {
+    func: function(s) {
+      console.log('here')
+      console.log(s.target.innerText)
+    }
+    // check: function() {
+    //   console.log('here')
+    //   this.checked? this.msg = 'YES' : this.msg = 'NO'
+    // },
+    // checked: function() {
+    //   console.log('here?')
+    //   this.checkedBoo = !this.checkedBoo;
+    // }
+  },
+  // render() {
+  //   return (
+  //     <div class="checkbox-wrapper" >
+  //       <q-checkbox v-model="checked" val={this.value} label="Any"></q-checkbox>
+  //       <AboutPage testValue={this.testValue}/>
+	// 	    <div class="title">{ this.msg }</div>
+	// 	  </div>)
+  // }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
