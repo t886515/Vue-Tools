@@ -38,6 +38,7 @@ export default {
     //   this.checkedBoo = !this.checkedBoo;
     // }
   },
+  //possible JSX implementation. Have less support than the normal template format
   // render() {
   //   return (
   //     <div class="checkbox-wrapper" >
