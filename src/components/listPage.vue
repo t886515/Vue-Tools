@@ -1,8 +1,8 @@
 <template>
   <div class="listpage">
-    <h1 class="todo-header">
-      To Do List ˊ_>ˋ
-    </h1>
+    <h2 class="todo-header">
+      I'm just a To-Do List
+    </h2>
     <List/>
   </div>
 </template>

@@ -1,29 +1,20 @@
 <template>
   <div class="about">
-    <h1>{{ item }}</h1>
-    <q-btn> {{ testValue }} </q-btn>
+    <h2>{{ item }}</h2>
 
   </div>
 </template>
 
 <script>
-import { QBtn } from 'quasar-framework'
+
 export default {
   name: 'AboutPage',
-  components: {
-    QBtn
-  },
   data () {
     return {
-      item: 'About fjdsklafjdlkajflkd'
+      item: 'About Page'
     }
   },
-  props: {
-    testValue: {
-      type: Number,
-      required: true
-    }
-  }
+
 }
 </script>
 

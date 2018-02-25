@@ -1,8 +1,11 @@
 <template>
   <q-list class="list-entry" >
     <q-item>
-      <q-checkbox @click.native="test" v-model="selectedItem" :val="todo.id" :label="todo.value"></q-checkbox>
+      <q-item-side icon="check" v-show="todo.isComplete" />
+      <q-item-main v-show="todo.isComplete" :label="todo.value" />
+      <q-checkbox v-show="!todo.isComplete" @click.native="test" v-model="selectedItem" :val="todo.id" :label="todo.value"></q-checkbox>
     </q-item>
+    <q-card-separator />
   </q-list>
 </template>
 
@@ -11,13 +14,7 @@
 export default {
   name: 'list-entry',
   data () {
-    // console.log(this.props)
     return {
-      // items: [{value: "Make a to do list", id:1 },
-      // {value: "Do leetcode", id:2 },
-      // {value: "Sleep", id:3 }],
-      // selectedItem: {}
-
     }
   },
   methods: {

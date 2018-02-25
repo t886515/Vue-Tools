@@ -1,13 +1,15 @@
 <template>
   <div class="list">
 
-    <q-card inline>
+    <q-card class="to-do-card">
       <q-card-title>
-        <q-input v-model="addTodoValue" @keyup.enter="addTodo" float-label="Enter A Todo"></q-input>
-        <q-btn :loading="submitting" @click="addTodo">Add</q-btn>
-        <q-btn @clicl="removeTodo">Remove Selected</q-btn>
+          <q-input v-model="addTodoValue" @keyup.enter="addTodo" type="textarea" float-label="Enter A Todo"><q-btn round class="add-button" icon="add" @click="addTodo"><q-tooltip >Add To-Do</q-tooltip></q-btn></q-input>
       </q-card-title>
       <ListEntry v-for="todo in items" :todo="todo" :selectedItem="selectedItem" :key="todo.id"/>
+      <q-card-actions align="center">
+        <q-btn round icon="check" @click="completeTodo"><q-tooltip>Mark As Complete</q-tooltip></q-btn>
+        <q-btn round icon="delete" @click="removeTodo"><q-tooltip>Remove Selected</q-tooltip></q-btn>
+      </q-card-actions>
     </q-card>
   </div>
 </template>
@@ -45,19 +47,21 @@ export default {
       this.addTodoValue = "";
 
     },
-    // submitToDo: function(event) {
-    //   this.submitting = false
-    //   console.log(this.submitting)
-    //   console.log(event)
-    //
-    //   setTimeout(() => {
-    //     this.submitting = true
-    //   }, 3000)
-    //
-    //   this.addTodo();
-    // },
-    removeTodo: function(event) {
+    completeTodo: function(event) {
+      this.items.forEach((x, i)=>{
+        if (this.selectedItem.includes(x.id)) {
+          this.items[i].isComplete = true;
+        }
+      })
+      this.selectedItem = [];
 
+    },
+    removeTodo: function(event) {
+      let newItem = this.items.filter((x) => {
+        return !this.selectedItem.includes(x.id)
+      });
+      this.items = newItem
+      this.selectedItem = [];
     }
 
   },
@@ -80,5 +84,15 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.to-do-card {
+  width: 50%;
+  display: inline-block;
+}
+
+.add-button {
+  width: 45px;
+  height: 45px;
 }
 </style>

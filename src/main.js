@@ -9,7 +9,7 @@ import 'quasar-extras/roboto-font';
 import 'quasar-extras/material-icons';
 import 'quasar-framework/dist/quasar.ios.css';
 
-import { QSpinnerDots, QInput, QCard, QTooltip, QBtn, QCheckbox, QIcon, QToolbar, QToolbarTitle, QTooltipQCard, QCardTitle, ListEntry, QField, QList, QItem, QItemSide, QItemTile  } from 'quasar-framework';
+import { QCardActions, QCardSeparator, QItemMain, QRadio, QItemSeparator, QSpinnerDots, QInput, QCard, QTooltip, QBtn, QCheckbox, QIcon, QToolbar, QToolbarTitle, QTooltipQCard, QCardTitle, ListEntry, QField, QList, QItem, QItemSide, QItemTile  } from 'quasar-framework';
 
 import apolloProvider from './apollo';
 
@@ -32,6 +32,11 @@ Vue.use(Quasar, {
     QItemTile,
     QInput,
     QSpinnerDots,
+    QItemSeparator,
+    QRadio,
+    QItemMain,
+    QCardSeparator,
+    QCardActions
   }
 })
 /* eslint-disable no-new */
