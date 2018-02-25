@@ -1,21 +1,17 @@
 <template>
   <div id="app">
-    <q-btn>Hi</q-btn>
-
+    <NavBar/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import { QBtn, QIcon, QField } from 'quasar-framework'
-
+import NavBar from './components/navBar'
 export default {
+  name: 'App',
   components: {
-    QBtn,
-    QIcon,
-    QField
-  },
-  name: 'App'
+    NavBar
+  }
 }
 </script>
 
@@ -26,6 +22,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

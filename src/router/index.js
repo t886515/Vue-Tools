@@ -1,24 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
 import AboutPage from '@/components/AboutPage'
+import ListPage from '@/components/listPage'
 
 Vue.use(Router)
 
-const testValue = function(){ return 1230000 }();
+// const testValue = function(){ return 1230000 }();
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Home',
+      component: Home
     },
     {
       path:'/about',
       name: 'AboutPage',
       component: AboutPage,
-      props: {testValue: testValue}
+      // props: {testValue: testValue}
+    },
+    {
+      path: '/list',
+      name: 'ToDoList',
+      component: ListPage,
     }
   ]
 })
