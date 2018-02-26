@@ -7,7 +7,7 @@
       <q-icon name="home" />
     </q-btn>
     <q-toolbar-title>
-      Some Tools
+      ¯\_(ツ)_/¯
     </q-toolbar-title>
 
     </q-toolbar>

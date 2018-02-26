@@ -9,8 +9,7 @@ import 'quasar-extras/roboto-font';
 import 'quasar-extras/material-icons';
 import 'quasar-framework/dist/quasar.ios.css';
 
-import { QCardActions, QCardSeparator, QItemMain, QRadio, QItemSeparator, QSpinnerDots, QInput, QCard, QTooltip, QBtn, QCheckbox, QIcon, QToolbar, QToolbarTitle, QTooltipQCard, QCardTitle, ListEntry, QField, QList, QItem, QItemSide, QItemTile  } from 'quasar-framework';
-
+import { QModal, QPopover, QCardActions, QCardSeparator, QItemMain, QRadio, QItemSeparator, QSpinnerDots, QInput, QCard, QTooltip, QBtn, QCheckbox, QIcon, QToolbar, QToolbarTitle, QTooltipQCard, QCardTitle, ListEntry, QField, QList, QItem, QItemSide, QItemTile  } from 'quasar-framework';
 import apolloProvider from './apollo';
 
 Vue.config.productionTip = false
@@ -36,9 +35,13 @@ Vue.use(Quasar, {
     QRadio,
     QItemMain,
     QCardSeparator,
-    QCardActions
+    QCardActions,
+    QPopover,
+    QModal
   }
 })
+Vue.prototype.$foo = "bar";
+// Vue.prototype.$closeOverlay = CloseOverlay
 /* eslint-disable no-new */
 
 

@@ -41,11 +41,11 @@ export default {
     //   console.log(s.target.innerText)
     // }
     GoToList: function(e) {
-      console.log(e.target.innerText);
+      // console.log(e.target.innerText);
       this.$router.push('/list');
     },
     GoToAbout: function(e) {
-      console.log(e.target.innerText);
+      // console.log(e.target.innerText);
       this.$router.push('/about');
     }
     // check: function() {
