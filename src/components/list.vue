@@ -9,6 +9,7 @@
       <q-card-actions align="center">
         <q-btn round icon="check" @click="completeTodo"><q-tooltip>Mark As Complete</q-tooltip></q-btn>
         <q-btn round icon="delete" @click="removeTodo"><q-tooltip>Remove Selected</q-tooltip></q-btn>
+        <q-btn round icon="delete sweep" @click="removeAllTodo"><q-tooltip>REMOVE ALL</q-tooltip></q-btn>
       </q-card-actions>
     </q-card>
   </div>
@@ -16,6 +17,7 @@
 
 <script>
 import ListEntry from './listEntry'
+import { db, ToDos, dbAddToDo, dbRemoveToDo, dbRemoveAllTodo } from '../../firebase/connector.js';
 
 export default {
   name: 'list',
@@ -27,8 +29,10 @@ export default {
       {value: "Sleep", id:3, isComplete:false }],
       selectedItem: [],
       addTodoValue: "",
-      submitting: true,
     }
+  },
+  firebase: {
+    items: ToDos
   },
   methods: {
     addTodo: function(event) {
@@ -36,11 +40,7 @@ export default {
         alert('Please Enter Some Values')
         return
       }
-      let toDoObject = {};
-      toDoObject.isComplete = false;
-      toDoObject.value = this.addTodoValue;
-      toDoObject.id = this.items.length + 1;
-      this.items.push(toDoObject);
+      dbAddToDo(this.addTodoValue, false, "")
       this.addTodoValue = "";
 
     },
@@ -53,19 +53,16 @@ export default {
       this.selectedItem = [];
 
     },
-    removeTodo: function(event, x, id) {
-      if (id) {
-        let newItem = this.items.filter((x) => {
-          return x.id !== id
-        });
-        this.items = newItem
-        return;
+    removeTodo: function(event, x) {
+      for (let item of this.selectedItem) {
+        dbRemoveToDo(item);
       }
-      let newItem = this.items.filter((x) => {
-        return !this.selectedItem.includes(x.id)
-      });
-      this.items = newItem
       this.selectedItem = [];
+    },
+    removeAllTodo: function() {
+      // prompt('Hi?')
+      alert('You are going to remove all todo and you don\'t have a cancel button ^_^')
+      dbRemoveAllTodo();
     }
 
   },

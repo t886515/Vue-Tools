@@ -1,6 +1,8 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import VueFire from 'vuefire';
+import Firebase from 'firebase';
 import App from './App'
 import router from './router'
 import Quasar from 'quasar-framework'
@@ -14,6 +16,7 @@ import apolloProvider from './apollo';
 
 Vue.config.productionTip = false
 
+Vue.use(VueFire);
 Vue.use(Quasar, {
   components: {
     QBtn,
@@ -40,14 +43,28 @@ Vue.use(Quasar, {
     QModal
   }
 })
-Vue.prototype.$foo = "bar";
+// Vue.prototype.$foo = "bar";
 // Vue.prototype.$closeOverlay = CloseOverlay
 /* eslint-disable no-new */
+
+// const FirebaseApp = Firebase.initializeApp({
+//   apiKey: "AIzaSyC25drYCmzu1DGeAievytu-OlBF6IOGjrA",
+//   authDomain: "vue-to-do-list.firebaseapp.com",
+//   databaseURL: "https://vue-to-do-list.firebaseio.com",
+//   projectId: "vue-to-do-list",
+//   storageBucket: "vue-to-do-list.appspot.com",
+//   messagingSenderId: "226681440867"
+// });
+//
+// const db = FirebaseApp.database()
 
 
 new Vue({
   el: '#app',
   apolloProvider,
+  // firebase: {
+  //   todoArray: db.ref('1')
+  // },
   router,
   components: { App },
   template: '<App/>',

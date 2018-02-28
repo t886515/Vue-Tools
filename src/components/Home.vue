@@ -8,6 +8,7 @@
       <q-btn class="menu-btn" @click="GoToAbout">
         About
       </q-btn>
+      <q-btn @click="test">TEST</q-btn>
     </div>
     <!-- <div class="checkbox-wrapper" >
       <q-checkbox v-model="checked" label="Any"></q-checkbox>
@@ -21,10 +22,14 @@
 
 <script>
 import NavBar from './navBar.vue';
+import { db } from '../../firebase/connector.js';
 
 export default {
   name: 'Home',
   components: { NavBar },
+  firebase: {
+    todoArray: db.ref()
+  },
   data () {
     return {
       // msg: 'Welcome to Your Vue.js App...',
@@ -36,6 +41,13 @@ export default {
     }
   },
   methods: {
+    test: function(e) {
+      console.log(Query);
+      for (let item of this.todoArray) {
+        console.log(item)
+      }
+      // console.log(this.todoArray[0])
+    },
     // func: function(s) {
     //   console.log('here')
     //   console.log(s.target.innerText)

@@ -4,7 +4,7 @@
       <q-item-side icon="check" v-show="todo.isComplete" />
       <q-item-main v-show="todo.isComplete" :label="todo.value" />
       <q-item-main v-show="!todo.isComplete">
-        <q-checkbox v-model="selectedItem" :val="todo.id" :label="todo.value"/>
+        <q-checkbox v-model="selectedItem" @click.native="onCheckBoxClickTest" :val="todo.id" :label="todo.value"/>
         <NotesModal v-show="displayNoteModal" :toggleNoteModal="toggleNoteModal" :displayNoteModal="displayNoteModal" :todo="todo" />
         <div class="notes">
           {{todo.notes}}
@@ -67,6 +67,12 @@ export default {
 
   },
   methods: {
+    onCheckBoxClickTest: function() {
+
+      // console.log(this.selectedItem)
+      // console.log(this.selectedItem[0])
+      // console.log(this.todo.id)
+    },
     toggleTodoMenu: function() {
       this.displayTodoMenu = !this.displayTodoMenu
     },
@@ -74,7 +80,7 @@ export default {
       this.todo.isComplete = !this.todo.isComplete;
     },
     deleteTodo: function(el, x) {
-      this.removeTodo(el, x, this.todo.id);
+      this.removeTodo(el, x);
     },
     toggleNoteModal: function(el) {
       this.displayNoteModal = !this.displayNoteModal;

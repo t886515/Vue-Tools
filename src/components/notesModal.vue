@@ -1,13 +1,15 @@
 <template>
-  <q-modal :content-css="css" class="noteModal">
+  <q-modal @keyup.esc.native="cancel" :content-css="css" class="noteModal">
     <h4>Notes for "{{todo.value}}"</h4>
     <q-item-separator />
       <q-input type="textarea" v-model="notes" :placeholder="notes" @keyup.enter="saveNotes" />
-    <q-btn round icon="note add" @click="saveNotes"><q-tooltip anchor="bottom middle" self="top middle">Add Notes</q-tooltip></q-btn>
+    <q-btn round icon="save" @click="saveNotes"><q-tooltip anchor="bottom middle" self="top middle">Add Notes</q-tooltip></q-btn>
+    <q-btn round icon="cancel" @click="cancel"><q-tooltip anchor="bottom middle" self="top middle">Cancel</q-tooltip></q-btn>
   </q-modal>
 </template>
 
 <script>
+import { addNote } from '../../firebase/connector.js';
 
 export default {
   name: 'list-entry',
@@ -33,7 +35,12 @@ export default {
   },
   methods: {
     saveNotes: function() {
-      this.todo.notes = this.notes;
+      addNote(this.todo.id, this.notes)
+      this.toggleNoteModal();
+    },
+    cancel: function() {
+      alert('You are going to exit without saving!')
+      this.notes = "";
       this.toggleNoteModal();
     }
   }
