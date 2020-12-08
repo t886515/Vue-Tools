@@ -16,42 +16,56 @@
 </template>
 
 <script>
-import ListEntry from './listEntry'
-import { db, ToDos, dbAddToDo, dbRemoveToDo, dbRemoveAllTodo } from '../../firebase/connector.js';
+import ListEntry from './listEntry';
+// import gql from 'graphql-tag';
+import {
+  db,
+  ToDos,
+  dbAddToDo,
+  dbRemoveToDo,
+  dbRemoveAllTodo
+} from '../../firebase/connector.js';
 
 export default {
   name: 'list',
   components: { ListEntry },
-  data () {
+  data() {
     return {
-      items: [{value: "Make a to do list", id:1, isComplete:false, notes: "Something that looks right Something that looks right Something that looks right Something that looks right" },
-      {value: "Do leetcode", id:2, isComplete:false },
-      {value: "Sleep", id:3, isComplete:false }],
+      items: [
+        {
+          value: 'Make a to do list',
+          id: 1,
+          isComplete: false,
+          notes:
+            'Something that looks right Something that looks right Something that looks right Something that looks right'
+        },
+        { value: 'Do leetcode', id: 2, isComplete: false },
+        { value: 'Sleep', id: 3, isComplete: false }
+      ],
       selectedItem: [],
-      addTodoValue: "",
-    }
+      addTodoValue: ''
+    };
   },
+  // apollo: {},
   firebase: {
     items: ToDos
   },
   methods: {
     addTodo: function(event) {
-      if (this.addTodoValue.trim() === "") {
-        alert('Please Enter Some Values')
-        return
+      if (this.addTodoValue.trim() === '') {
+        alert('Please Enter Some Values');
+        return;
       }
-      dbAddToDo(this.addTodoValue, false, "")
-      this.addTodoValue = "";
-
+      dbAddToDo(this.addTodoValue, false, '');
+      this.addTodoValue = '';
     },
     completeTodo: function(event) {
-      this.items.forEach((x, i)=>{
+      this.items.forEach((x, i) => {
         if (this.selectedItem.includes(x.id)) {
           this.items[i].isComplete = true;
         }
-      })
+      });
       this.selectedItem = [];
-
     },
     removeTodo: function(event, x) {
       for (let item of this.selectedItem) {
@@ -61,25 +75,24 @@ export default {
     },
     removeAllTodo: function() {
       // prompt('Hi?')
-      alert('You are going to remove all todo and you don\'t have a cancel button ^_^')
+      alert(
+        "You are going to remove all todo and you don't have a cancel button ^_^"
+      );
       dbRemoveAllTodo();
     }
-
-  },
-
-}
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.to-do-card {
+  width: 50%;
+  display: inline-block;
+}
 
-  .to-do-card {
-    width: 50%;
-    display: inline-block;
-  }
-
-  .add-button {
-    width: 45px;
-    height: 45px;
-  }
+.add-button {
+  width: 45px;
+  height: 45px;
+}
 </style>
